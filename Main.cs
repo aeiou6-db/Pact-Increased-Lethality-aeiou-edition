@@ -14,7 +14,7 @@ using PactIncreasedLethality;
 using ModUtil;
 using ActiveProtectionSystem;
 
-[assembly: MelonInfo(typeof(Mod), "Pact Increased Lethality", "2.1.7B", "ATLAS")]
+[assembly: MelonInfo(typeof(Mod), "Pact Increased Lethality", "2.1.7C", "ATLAS")]
 [assembly: MelonGame("Radian Simulations LLC", "GHPC")]
 
 namespace PactIncreasedLethality
@@ -94,7 +94,6 @@ namespace PactIncreasedLethality
             module_manager.Add("PactThermal", new PactThermal());
             module_manager.Add("1A40", new FireControlSystem1A40());
             module_manager.Add("BOM", new BOM());
-            //module_manager.Add("BMP3", new BMP3());
         }
 
         public override void OnUpdate() 
@@ -113,17 +112,12 @@ namespace PactIncreasedLethality
                 APSLauncher.Init();
             }
 
-            //TODO why is this needed?        
-            if (sceneName == "GT01_Beginers_Luck") 
-            {
-                AssetUtil.LoadVanillaVehicle("T72M");
-            }
-
             if (Util.menu_screens.Contains(sceneName)) return;
 
             valid_scene_count++;
             if (valid_scene_count == 2)
             {
+                StateController.RunOrDefer(GameState.PlayerReady, new GameStateEventHandler(AssetUtil.ReleaseTempVanillaAssetsDeferred), GameStatePriority.Medium);
                 StateController.RunOrDefer(GameState.PlayerReady, new GameStateEventHandler(OnPlayerReady), GameStatePriority.Medium);
 
                 PactEra.Init();
@@ -139,7 +133,6 @@ namespace PactIncreasedLethality
                 BMP1.Init();
                 BMP2.Init();
                 BTR60.Init();
-                //BMP3.Init();
 
                 valid_scene_count = 0;
             }
