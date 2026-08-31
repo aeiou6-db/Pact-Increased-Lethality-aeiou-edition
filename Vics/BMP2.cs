@@ -192,7 +192,7 @@ namespace PactIncreasedLethality
 
             bmp2_patch = cfg.CreateEntry<bool>("BMP-2 Patch", true);
             bmp2_patch.Description = "//////////////////////////////////////////////////////////////////////////////////////////";
-            bmp2_AP_round = cfg.CreateEntry<string>("AP Round (BMP-2)", "3UBR8");
+            bmp2_AP_round = cfg.CreateEntry<string>("AP Round (BMP-2)", "3UBR6");
             bmp2_AP_round.Comment = "3UBR6, 3UBR8, 3UBR11";
 
             bmp2_random_ammo = cfg.CreateEntry<bool>("Random AP Round (BMP-2)", false);
