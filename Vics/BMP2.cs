@@ -133,7 +133,6 @@ namespace PactIncreasedLethality
         static MelonPreferences_Entry<bool> bmp2_patch;
         static MelonPreferences_Entry<string> bmp2_AP_round;
         static MelonPreferences_Entry<bool> bmp2_random_ammo;
-        static MelonPreferences_Entry<bool> bmp2_better_stab;
         static MelonPreferences_Entry<bool> use_3uof8;
         static MelonPreferences_Entry<bool> use_9m113as;
         static MelonPreferences_Entry<bool> super_fcs;
@@ -182,17 +181,17 @@ namespace PactIncreasedLethality
             }
         }
         public static void Config(MelonPreferences_Category cfg)
-        { 
+        {
             var random_ammo_pool = new List<string>()
             {
-                "3UBR11", //3UBR11 now a thing, upgrade over 30mm apds
+                "3UBR11",
                 "3UBR8",
                 "3UBR6"
             };
 
             bmp2_patch = cfg.CreateEntry<bool>("BMP-2 Patch", true);
             bmp2_patch.Description = "//////////////////////////////////////////////////////////////////////////////////////////";
-            bmp2_AP_round = cfg.CreateEntry<string>("AP Round (BMP-2)", "3UBR6");
+            bmp2_AP_round = cfg.CreateEntry<string>("AP Round (BMP-2)", "3UBR8");
             bmp2_AP_round.Comment = "3UBR6, 3UBR8, 3UBR11";
 
             bmp2_random_ammo = cfg.CreateEntry<bool>("Random AP Round (BMP-2)", false);
@@ -208,9 +207,6 @@ namespace PactIncreasedLethality
 
             super_fcs = cfg.CreateEntry<bool>("Super FCS (BMP-2)", false);
             super_fcs.Comment = "Point-n-shoot, thermal sight, autotracking";
-
-            bmp2_better_stab = cfg.CreateEntry<bool>("Better Stabilizer (BMP-2", false);
-            bmp2_better_stab.Comment = "Less reticle blur, shake while on the move";
 
             has_lrf = cfg.CreateEntry<bool>("Laser Rangefinder (BMP-2)", false);
             has_lrf.Comment = "Point-n-shoot; automatic lead";
@@ -264,13 +260,6 @@ namespace PactIncreasedLethality
             rand = UnityEngine.Random.Range(0, Ammo_30mm.ap.Count);
             string ammo_str = bmp2_random_ammo.Value ? bmp2_random_ammo_pool.Value.ElementAt(rand) : bmp2_AP_round.Value;
             AmmoClipCodexScriptable he = use_3uof8.Value ? Ammo_30mm.clip_codex_3uof8 : Ammo_30mm.clip_codex_3uor6;
-            if (bmp2_better_stab.Value)
-            {
-                day_optic.slot.VibrationBlurScale = 0.05f;
-                day_optic.slot.VibrationShakeMultiplier = 0.1f;
-                night_optic.slot.VibrationBlurScale = 0.05f;
-                night_optic.slot.VibrationShakeMultiplier = 0.1f;
-            }
             if (super_fcs.Value)
             {
                 MissileGuidanceUnit computer = vic.GetComponentInChildren<MissileGuidanceUnit>();
@@ -375,8 +364,8 @@ namespace PactIncreasedLethality
 
                 vic._friendlyName = "BMP-23-4";
 
-                loadout_manager.LoadedAmmoList.AmmoClips[1] = clip_codex_bzt;
-                loadout_manager.LoadedAmmoList.AmmoClips[0] = clip_codex_ofz;
+                loadout_manager.LoadedAmmoList.AmmoClips[0] = clip_codex_bzt;
+                loadout_manager.LoadedAmmoList.AmmoClips[1] = clip_codex_ofz;
             }
 
             if (has_lrf.Value && !is_zsu && !super_fcs.Value)
@@ -549,10 +538,11 @@ namespace PactIncreasedLethality
                 atgm.Feed.AmmoTypeInBreech = null;
                 atgm.Feed.Start();
             }
-
-            loadout_manager.LoadedAmmoList.AmmoClips[0] = Ammo_30mm.ap[ammo_str];
-            loadout_manager.LoadedAmmoList.AmmoClips[1] = he;
-
+            if (!is_zsu)
+            {
+                loadout_manager.LoadedAmmoList.AmmoClips[0] = Ammo_30mm.ap[ammo_str];
+                loadout_manager.LoadedAmmoList.AmmoClips[1] = he;
+            }
             GHPC.Weapons.AmmoRack rack = loadout_manager.RackLoadouts[0].Rack;
             Util.EmptyRack(rack);
 
@@ -748,7 +738,7 @@ namespace PactIncreasedLethality
             ammo_9m133.TntEquivalentKg = 6.5f;
             ammo_9m133.SpallMultiplier = 2.3f;
             ammo_9m133._radius = 0.076f;
-            ammo_9m133.TurnSpeed = 5f;
+            ammo_9m133.TurnSpeed = 2f;
             ammo_9m133.SectionalArea = 0.018146f;
             ammo_9m133.Guidance = AmmoType.GuidanceType.Laser;
 
