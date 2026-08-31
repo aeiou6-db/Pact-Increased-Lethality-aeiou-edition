@@ -12,7 +12,7 @@ namespace PactIncreasedLethality
         internal static AmmoType.AmmoClip clip_3ubr8;
         internal static AmmoCodexScriptable ammo_codex_3ubr8;
         internal static AmmoType ammo_3ubr8;
-        internal static AmmoClipCodexScriptable clip_codex_3ubr11;
+        internal static AmmoClipCodexScriptable clip_codex_3ubr11; //APFSDS
         internal static AmmoType.AmmoClip clip_3ubr11;
         internal static AmmoCodexScriptable ammo_codex_3ubr11; //APFSDS! Yay!
         internal static AmmoType ammo_3ubr11;
