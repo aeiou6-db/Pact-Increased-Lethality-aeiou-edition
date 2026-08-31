@@ -182,10 +182,10 @@ namespace PactIncreasedLethality
             }
         }
         public static void Config(MelonPreferences_Category cfg)
-        {
+        { 
             var random_ammo_pool = new List<string>()
             {
-                "3UBR11",
+                "3UBR11", //3UBR11 now a thing, upgrade over 30mm apds
                 "3UBR8",
                 "3UBR6"
             };
