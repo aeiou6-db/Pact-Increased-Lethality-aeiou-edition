@@ -196,7 +196,7 @@ namespace PactIncreasedLethality
 
             bmp2_random_ammo = cfg.CreateEntry<bool>("Random AP Round (BMP-2)", false);
             bmp2_random_ammo_pool = cfg.CreateEntry<List<string>>("Random AP Round Pool (BMP-2)", random_ammo_pool);
-            bmp2_random_ammo_pool.Comment = "3UBR8, 3UBR6, 3UBR11";
+            bmp2_random_ammo_pool.Comment = "3UBR6, 3UBR8, 3UBR11";
 
             use_3uof8 = cfg.CreateEntry<bool>("Use 3UOF8", true);
             use_3uof8.Comment = "Mixed belt of 3UOR6 and 3UOF8 (1:2); 3UOF8 has more explosive filler but no tracer";
