@@ -112,7 +112,6 @@ namespace PactIncreasedLethality
             btr_AP_round = cfg.CreateEntry<string>("AP Round (BTR-60A)", "3UBR6"); // Added compat for 3UBR11
             btr_AP_round.Comment = "3UBR6, 3UBR8, 3UBR11";
             btr_random_ammo = cfg.CreateEntry<bool>("Random AP Round (BTR-60A)", false);
-            btr_random_ammo.Comment = "Randomizes ammo selection for BTR-60A (3UBR11, 3UBR8, 3UBR6)";
             btr_random_ammo_pool = cfg.CreateEntry<List<string>>("Random AP Round Pool (BTR-60A)", random_ammo_pool);
             btr_random_ammo_pool.Comment = "3UBR8, 3UBR6, 3UBR11";
             use_3uof8 = cfg.CreateEntry<bool>("Use 3UOF8 (BTR-60A)", false);
