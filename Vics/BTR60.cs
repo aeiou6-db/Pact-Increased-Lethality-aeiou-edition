@@ -109,7 +109,7 @@ namespace PactIncreasedLethality
             stab = cfg.CreateEntry<bool>("Stabilizer (BTR-60)", false);
             autocannon = cfg.CreateEntry<bool>("Use 30mm 2A72 Autocannon (BTR-60)", true);
             autocannon.Comment = "BTR-60A conversion; has fixed 6x magnification day sight and passive night vision sight";
-            btr_AP_round = cfg.CreateEntry<string>("AP Round (BTR-60A)", "3UBR6"); // Added compat for 3UBR11
+            btr_AP_round = cfg.CreateEntry<string>("AP Round (BTR-60A)", "3UBR6");
             btr_AP_round.Comment = "3UBR6, 3UBR8, 3UBR11";
             btr_random_ammo = cfg.CreateEntry<bool>("Random AP Round (BTR-60A)", false);
             btr_random_ammo_pool = cfg.CreateEntry<List<string>>("Random AP Round Pool (BTR-60A)", random_ammo_pool);
