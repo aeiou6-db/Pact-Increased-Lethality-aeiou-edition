@@ -258,6 +258,7 @@ namespace PactIncreasedLethality
 
             rand = UnityEngine.Random.Range(0, Ammo_30mm.ap.Count);
             string ammo_str = bmp2_random_ammo.Value ? bmp2_random_ammo_pool.Value.ElementAt(rand) : bmp2_AP_round.Value;
+            AmmoClipCodexScriptable ap = Ammo_30mm.ap[ammo_str];
             AmmoClipCodexScriptable he = use_3uof8.Value ? Ammo_30mm.clip_codex_3uof8 : Ammo_30mm.clip_codex_3uor6;
             if (super_fcs.Value)
             {
@@ -363,8 +364,8 @@ namespace PactIncreasedLethality
 
                 vic._friendlyName = "BMP-23-4";
 
-                loadout_manager.LoadedAmmoList.AmmoClips[0] = clip_codex_bzt;
-                loadout_manager.LoadedAmmoList.AmmoClips[1] = clip_codex_ofz;
+                ap = clip_codex_bzt;
+                he = clip_codex_ofz;
             }
 
             if (has_lrf.Value && !is_zsu && !super_fcs.Value)
@@ -537,11 +538,9 @@ namespace PactIncreasedLethality
                 atgm.Feed.AmmoTypeInBreech = null;
                 atgm.Feed.Start();
             }
-            if (!is_zsu)
-            {
-                loadout_manager.LoadedAmmoList.AmmoClips[0] = Ammo_30mm.ap[ammo_str];
+                loadout_manager.LoadedAmmoList.AmmoClips[0] = ap;
                 loadout_manager.LoadedAmmoList.AmmoClips[1] = he;
-            }
+
             GHPC.Weapons.AmmoRack rack = loadout_manager.RackLoadouts[0].Rack;
             Util.EmptyRack(rack);
 
